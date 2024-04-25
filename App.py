@@ -1,9 +1,10 @@
 import streamlit as st
 import nltk
 import spacy
-
-nltk.download('stopwords')
-spacy.load('en_core_web_sm')
+import en_core_web_sm
+en_core_web_sm.load()
+# nltk.download('stopwords')
+# spacy.load('en_core_web_sm')
 
 import base64
 import time, datetime
@@ -89,7 +90,7 @@ def run():
     if pdf_file is not None:
         # with st.spinner('Uploading your Resume....'):
         #     time.sleep(4)
-        save_image_path = './uploadedresume/' + pdf_file.name
+        save_image_path = './resume/' + pdf_file.name
         with open(save_image_path, "wb") as f:
             f.write(pdf_file.getbuffer())
         show_pdf(save_image_path)
