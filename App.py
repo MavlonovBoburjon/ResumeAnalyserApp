@@ -1,6 +1,7 @@
 import streamlit as st
 import nltk
 import spacy
+import os
 
 nltk.download('stopwords')
 spacy.load('en_core_web_sm')
@@ -54,7 +55,6 @@ def show_pdf(file_path):
     with open(file_path, "rb") as f:
         base64_pdf = base64.b64encode(f.read()).decode('utf-8')
     print(file_path)
-    print(base64_pdf)
     # pdf_display = f'<embed src="data:application/pdf;base64,{base64_pdf}" width="700" height="1000" type="application/pdf">'
     pdf_display = (f'<iframe src="data:application/pdf;base64,{base64_pdf}" width="100%" height="800px" '
                    f'type="application/pdf"></iframe>')
@@ -81,7 +81,21 @@ st.set_page_config(
     page_icon='./Logo/Logo.ico',
 )
 
+def delete_files_in_directory(directory_path):
+   try:
+     files = os.listdir(directory_path)
+     for file in files:
+       file_path = os.path.join(directory_path, file)
+       if os.path.isfile(file_path):
+         os.remove(file_path)
+     print("All files deleted successfully.")
+   except OSError:
+     print("Error occurred while deleting files.")
+
+
 def run():
+    directory_path = 'resume'
+    delete_files_in_directory(directory_path)
     st.title("Aqlli Resume Tahlilchisi")
     img = Image.open('Logo/Logo.jpg')
     img = img.resize((250, 250))
