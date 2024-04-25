@@ -20,7 +20,6 @@ from PIL import Image
 from Courses import ds_course, web_course, android_course, ios_course, uiux_course
 
 
-
 def get_table_download_link(df, filename, text):
     """Generates a link allowing the data in a given panda dataframe to be downloaded
     in:  dataframe
@@ -50,6 +49,7 @@ def pdf_reader(file):
     converter.close()
     fake_file_handle.close()
     return text
+
 
 def show_pdf(file_path):
     with open(file_path, "rb") as f:
@@ -81,21 +81,20 @@ st.set_page_config(
     page_icon='./Logo/Logo.ico',
 )
 
+
 def delete_files_in_directory(directory_path):
-   try:
-     files = os.listdir(directory_path)
-     for file in files:
-       file_path = os.path.join(directory_path, file)
-       if os.path.isfile(file_path):
-         os.remove(file_path)
-     print("All files deleted successfully.")
-   except OSError:
-     print("Error occurred while deleting files.")
+    try:
+        files = os.listdir(directory_path)
+        for file in files:
+            file_path = os.path.join(directory_path, file)
+            if os.path.isfile(file_path):
+                os.remove(file_path)
+        print("All files deleted successfully.")
+    except OSError:
+        print("Error occurred while deleting files.")
 
 
 def run():
-    directory_path = 'resume'
-    delete_files_in_directory(directory_path)
     st.title("Aqlli Resume Tahlilchisi")
     img = Image.open('Logo/Logo.jpg')
     img = img.resize((250, 250))
@@ -337,4 +336,7 @@ def run():
         else:
             st.error('Nimadir xato..')
 
+
+directory_path = 'resume'
+delete_files_in_directory(directory_path)
 run()
