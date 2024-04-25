@@ -1,7 +1,6 @@
 import streamlit as st
 import nltk
 import spacy
-from pdfminer import converter
 
 nltk.download('stopwords')
 spacy.load('en_core_web_sm')
@@ -90,7 +89,7 @@ def run():
     if pdf_file is not None:
         # with st.spinner('Uploading your Resume....'):
         #     time.sleep(4)
-        save_image_path = './Uploaded_Resumes/' + pdf_file.name
+        save_image_path = './uploadedresume/' + pdf_file.name
         with open(save_image_path, "wb") as f:
             f.write(pdf_file.getbuffer())
         show_pdf(save_image_path)
