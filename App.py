@@ -1,10 +1,9 @@
 import streamlit as st
 import nltk
 import spacy
-import en_core_web_sm
-en_core_web_sm.load()
-# nltk.download('stopwords')
-# spacy.load('en_core_web_sm')
+
+nltk.download('stopwords')
+spacy.load('en_core_web_sm')
 
 import base64
 import time, datetime
