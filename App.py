@@ -54,7 +54,6 @@ def show_pdf(file_path):
     with open(file_path, "rb") as f:
         base64_pdf = base64.b64encode(f.read()).decode('utf-8')
     print(file_path)
-    print(base64_pdf)
     # pdf_display = f'<embed src="data:application/pdf;base64,{base64_pdf}" width="700" height="1000" type="application/pdf">'
     pdf_display = (f'<iframe src="data:application/pdf;base64,{base64_pdf}" width="100%" height="800px" '
                    f'type="application/pdf"></iframe>')
