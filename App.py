@@ -52,9 +52,8 @@ def pdf_reader(file):
 
 
 def show_pdf(file_path):
-    path = './example.txt'
 
-    check_file = os.path.isfile(path)
+    check_file = os.path.isfile(file_path)
 
     with open(file_path, "rb") as f:
         base64_pdf = base64.b64encode(f.read()).decode()
