@@ -53,10 +53,10 @@ def pdf_reader(file):
 
 def show_pdf(file_path):
     with open(file_path, "rb") as f:
-        base64_pdf = base64.b64encode(f.read()).decode('utf-8')
+        base64_pdf = base64.b64encode(f.read()).decode()
     print(file_path)
     # pdf_display = f'<embed src="data:application/pdf;base64,{base64_pdf}" width="700" height="1000" type="application/pdf">'
-    pdf_display = f'<iframe src="https://appresumeanalyser.streamlit.app/{file_path}" width="100%" height="800px" type="application/pdf"></iframe>'
+    pdf_display = f'<iframe src="data:application/pdf;base64,{base64_pdf}" width="100%" height="800px" type="application/pdf"></iframe>'
 
     st.markdown(file_path, unsafe_allow_html=True)
     st.markdown(pdf_display, unsafe_allow_html=True)
