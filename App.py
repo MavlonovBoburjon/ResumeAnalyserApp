@@ -90,19 +90,14 @@ def run():
 
     pdf_file = st.file_uploader("Resume Tanlang", type=["pdf"])
     if pdf_file is not None:
-        with st.spinner('Uploading your Resume....'):
-            time.sleep(4)
         save_image_path = './Upload_Resumes/' + pdf_file.name
-        with open(save_image_path, "wb") as f:
-            f.write(pdf_file.getbuffer())
         with open(save_image_path, "rb") as f:
             base64_pdf = base64.b64encode(f.read()).decode()
-        print(save_image_path)
-        # pdf_display = f'<embed src="data:application/pdf;base64,{base64_pdf}" width="700" height="1000" type="application/pdf">'
-        pdf_display = f'<iframe src="data:application/pdf;base64,{base64_pdf}" width="100%" height="800px" type="application/pdf"></iframe>'
 
-        st.markdown(save_image_path, unsafe_allow_html=True)
+        pdf_display = f'<iframe src="data:application/pdf;base64,{base64_pdf}" width="100%" height="800px" type="application/pdf"></iframe>'
         st.markdown(pdf_display, unsafe_allow_html=True)
+        with open(save_image_path, "wb") as f:
+            f.write(pdf_file.getbuffer())
         resume_data = ResumeParser(save_image_path).get_extracted_data()
         if resume_data:
             ## Get the whole Upload_Resumes data
