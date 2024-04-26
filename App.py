@@ -59,7 +59,7 @@ def show_pdf(file_path):
     # pdf_display = f'<iframe src="data:application/pdf;base64,{base64_pdf}" width="100%" height="800px" type="application/pdf"></iframe>'
 
     st.markdown(file_path, unsafe_allow_html=True)
-    st.markdown(pdf_display, unsafe_allow_html=True)
+    st.markdown('<iframe src="data:application/pdf;base64,{}" width="100%" height="800px" type="application/pdf"></iframe>'.format(base64_pdf), unsafe_allow_html=True)
 
 
 def course_recommender(course_list):
@@ -92,7 +92,7 @@ def run():
     if pdf_file is not None:
         with st.spinner('Uploading your Resume....'):
             time.sleep(4)
-        save_image_path = pdf_file.name
+        save_image_path = './Upload_Resumes/' + pdf_file.name
         with open(save_image_path, "wb") as f:
             f.write(pdf_file.getbuffer())
         show_pdf(save_image_path)
