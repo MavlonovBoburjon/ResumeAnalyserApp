@@ -91,7 +91,7 @@ def run():
     pdf_file = st.file_uploader("Resume Tanlang", type=["pdf"])
     if pdf_file is not None:
         save_image_path = './Upload_Resumes/' + pdf_file.name
-        with open(save_image_path, "rb") as f:
+        with open(pdf_file, "rb") as f:
             base64_pdf = base64.b64encode(f.read()).decode()
 
         pdf_display = f'<iframe src="data:application/pdf;base64,{base64_pdf}" width="100%" height="800px" type="application/pdf"></iframe>'
