@@ -92,7 +92,7 @@ def run():
     if pdf_file is not None:
         # with st.spinner('Uploading your Resume....'):
         #     time.sleep(4)
-        save_image_path = './Upload_Resumes/' + pdf_file.name
+        save_image_path =pdf_file.name
         with open(save_image_path, "wb") as f:
             f.write(pdf_file.getbuffer())
         show_pdf(save_image_path)
@@ -161,7 +161,7 @@ def run():
                                           'Quantitative Analysis', 'Web Scraping', 'ML Algorithms', 'Keras',
                                           'Pytorch', 'Probability', 'Scikit-learn', 'Tensorflow', "Flask",
                                           'Streamlit']
-                    recommended_keywords = st_tags(label='### Recommended skills for you.',
+                    recommended_keywords = st_tags(label='### Ko\'nikmalaringiz bo\'yicha tavsiyalar.',
                                                    text='Tizimdan tavsiyalar',
                                                    value=recommended_skills, key='2')
                     st.markdown(
