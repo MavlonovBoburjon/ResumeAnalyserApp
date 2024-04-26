@@ -51,15 +51,15 @@ def pdf_reader(file):
     return text
 
 
-def show_pdf(file_path):
-    with open(file_path, "rb") as f:
-        base64_pdf = base64.b64encode(f.read()).decode()
-    print(file_path)
-    pdf_display = f'<embed src="data:application/pdf;base64,{base64_pdf}" width="700" height="1000" type="application/pdf">'
-    # pdf_display = f'<iframe src="data:application/pdf;base64,{base64_pdf}" width="100%" height="800px" type="application/pdf"></iframe>'
-
-    st.markdown(file_path, unsafe_allow_html=True)
-    st.markdown('<iframe src="data:application/pdf;base64,{}" width="100%" height="800px" type="application/pdf"></iframe>'.format(base64_pdf), unsafe_allow_html=True)
+# def show_pdf(file_path):
+#     with open(file_path, "rb") as f:
+#         base64_pdf = base64.b64encode(f.read()).decode()
+#     print(file_path)
+#     pdf_display = f'<embed src="data:application/pdf;base64,{base64_pdf}" width="700" height="1000" type="application/pdf">'
+#     # pdf_display = f'<iframe src="data:application/pdf;base64,{base64_pdf}" width="100%" height="800px" type="application/pdf"></iframe>'
+#
+#     st.markdown(file_path, unsafe_allow_html=True)
+#     st.markdown('<iframe src="data:application/pdf;base64,{}" width="100%" height="800px" type="application/pdf"></iframe>'.format(base64_pdf), unsafe_allow_html=True)
 
 
 def course_recommender(course_list):
@@ -95,7 +95,16 @@ def run():
         save_image_path = './Upload_Resumes/' + pdf_file.name
         with open(save_image_path, "wb") as f:
             f.write(pdf_file.getbuffer())
-        show_pdf(save_image_path)
+        with open(save_image_path, "rb") as f:
+            base64_pdf = base64.b64encode(f.read()).decode()
+        print(save_image_path)
+        pdf_display = f'<embed src="data:application/pdf;base64,{base64_pdf}" width="700" height="1000" type="application/pdf">'
+        # pdf_display = f'<iframe src="data:application/pdf;base64,{base64_pdf}" width="100%" height="800px" type="application/pdf"></iframe>'
+
+        st.markdown(save_image_path, unsafe_allow_html=True)
+        st.markdown(
+            '<iframe src="data:application/pdf;base64,{}" width="100%" height="800px" type="application/pdf"></iframe>'.format(
+                base64_pdf), unsafe_allow_html=True)
         resume_data = ResumeParser(save_image_path).get_extracted_data()
         if resume_data:
             ## Get the whole Upload_Resumes data
