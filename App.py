@@ -91,7 +91,7 @@ def run():
 
     pdf_file = st.file_uploader("Resume Tanlang", type=["pdf"])
     if pdf_file is not None:
-        save_image_path = './Upload_Resumes/' + pdf_file.name
+        save_image_path = pdf_file.name
         with open(save_image_path, "wb") as f:
             f.write(pdf_file.getbuffer())
         show_pdf(save_image_path)
